@@ -1,7 +1,9 @@
 function pullAllSubDirs() {
+	bold=$(tput bold)
+	normal=$(tput sgr0)
 	for d in */ ; do
 		cd "$d"
-		echo -ne "\e[42m $d \e[0m branch - "
+		echo -ne "${bold}${d}${normal} branch - "
 		git branch | grep \*
 		echo -ne ""
 		
@@ -12,14 +14,16 @@ function pullAllSubDirs() {
 }
 
 function clearBrachesInAllSubDirs() {
+	bold=$(tput bold)
+	normal=$(tput sgr0)
 	for d in */ ; do
 		cd "$d"
 
-		echo -e "\e[42m $d \e[0m"
+		echo -e "${bold}${d}${normal}"
 
 		deleteBranchesByPattenr $1
 
-		cd ..	
+		cd ..
 	done
 }
 
